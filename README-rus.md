@@ -1,37 +1,37 @@
-# What the f\*ck JavaScript?
+# What the f\*ck JavaScript? [Что за х\*ня этот ваш JavaScript?]
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-> A list of funny and tricky JavaScript examples
+> Список забавных и запутанных JS-примеров
 
-JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
+JavaScript - потрясающий язык. У него простой синтаксис, большая экосистема и, что самое главное, отличное коммьюнити.
 
-At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud.
+Но в это же время, все мы слышали, что JavaScript немного смешной язык с замысловатыми конструкциями. Некоторые из них могут с легкостью превратить нашу повседневную работу в настоящий ад, а некоторые могут заставить нас смеяться во весь голос. 
 
-The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+Оригинальная идея WTFJS принадлежит Брайану Леруа [Brian Leroux](https://twitter.com/brianleroux). Этот список во многом вдохновлен его одноименной речью [**“WTFJS”** на dotJS в 2012 году](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
-# Node Packaged Manuscript
+# NPM [Пакетный менеджер]
 
-You can install this handbook using `npm`. Just run:
+Вы можете установить этот справочник с помощью `npm`. Просто запустите консоль:
 
 ```
 $ npm install -g wtfjs
 ```
 
-You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
+После этого Вы сможете запустить `wtfjs` в командной строке. Откроется этот мануал на выбранной странице `$PAGER`. Также Вы можете продолжить читать справочник прямо здесь.
 
-The source is available here: <https://github.com/denysdovhan/wtfjs>
+Оригинальный источник доступен по адресу:  <https://github.com/denysdovhan/wtfjs>
 
-# Translations
+# Переводы
 
-Currently, there are these translations of **wtfjs**:
+На текущий момент существуют следующие переводы **wtfjs**:
 
 - [中文版](./README-zh-cn.md)
 
-[**Request another translation**][tr-request]
+[**Запросить перевод на другой язык**][tr-request]
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
 
@@ -40,9 +40,9 @@ Currently, there are these translations of **wtfjs**:
 
 # Table of Contents
 
-- [💪🏻 Motivation](#-motivation)
-- [✍🏻 Notation](#-notation)
-- [👀 Examples](#-examples)
+- [💪🏻 Мотивация](#-motivation)
+- [✍🏻 Нотация](#-notation)
+- [👀 Примеры](#-examples)
   - [`[]` is equal `![]`](#-is-equal-)
   - [`true` is not equal `![]`, but not equal `[]` too](#true-is-not-equal--but-not-equal--too)
   - [true is false](#true-is-false)
@@ -104,54 +104,54 @@ Currently, there are these translations of **wtfjs**:
 
 # 💪🏻 Motivation
 
-> Just for fun
+> Ради удовольствия
 >
-> &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
+> &mdash; _[**“Ради удовольствия: Рассказ нечаянного революционера”**](https://en.wikipedia.org/wiki/Just_for_Fun), Линус Торвальдс_
 
-The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
+Основная цель данного мануала - собрать сумасшедшие примеры языка и по возможности объяснить как они работают. Просто потому что это весело - изучать что-то, чего мы не знали прежде.
 
-If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification.
+Если Вы начинающий разработчик, можете использовать данные заметки, чтобы поближе познакомиться с JavaScript. Я надеюсь, данный мануал замотивирует Вас проводить больше времени за чтением официальной документации. 
 
-If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
+Если Вы профессиональный разработчик, можете напомнить себе про причудливые и неожиданные стороны нашего любимого JavaScript.
 
-In any case, just read this. You're probably going to find something new.
+В любом случае, просто прочтите это. С большой долей вероятности Вы узнаете что-то новое.
 
-# ✍🏻 Notation
+# ✍🏻 Нотация
 
-**`// ->`** is used to show the result of an expression. For example:
+**`// ->`** используется для обозначения результата выражения. Например:
 
 ```js
 1 + 1; // -> 2
 ```
 
-**`// >`** means the result of `console.log` or another output. For example:
+**`// >`** обозначает результат console.log или другой вывод. Например:
 
 ```js
 console.log("hello, world!"); // > hello, world!
 ```
 
-**`//`** is just a comment used for explanations. Example:
+**`//`** просто комментарий для объяснений. Например:
 
 ```js
-// Assigning a function to foo constant
+// Назначение функции для константы foo
 const foo = function() {};
 ```
 
-# 👀 Examples
+# 👀 Примеры
 
-## `[]` is equal `![]`
+## `[]` равен `![]`
 
-Array is equal not array:
+Массив равен не массиву:
 
 ```js
 [] == ![]; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-The abstract equality operator converts both sides to numbers to compare them, and both sides become the number `0` for different reasons. Arrays are truthy, so on the right, the opposite of a truthy value is `false`, which is then coerced to `0`. On the left, however, an empty array is coerced to a number without becoming a boolean first, and empty arrays are coerced to `0`, despite being truthy.
+Оператор нестрогого равенства преобразовывает обе стороны в числа, чтобы сравнить их, и обе стороны превращаются в число `0` по разным причинам. Массивы сами по себе `truthy`, но не `true`, а противоположным для `truthy` значением с правой стороны является `false`, который далее приводится к 0. С левой же стороны пустой массив приводится к числу без стадии приведения к булевому значению, так как пустые массивы приводятся сразу к нулю, несмотря на то, что они `truthy`.
 
-Here is how this expression simplifies:
+Можно продемонстрировать это следующим образом: 
 
 ```js
 +[] == +![];
@@ -160,15 +160,15 @@ Here is how this expression simplifies:
 true;
 ```
 
-See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+Также посмотрите [`[]` является truthy, но не `true`](#-is-truthy-but-not-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `true` is not equal `![]`, but not equal `[]` too
+## `true` не равен `![]`, но и `[]` он тоже не равен
 
-Array is not equal `true`, but not Array is not equal `true` too;
-Array is equal `false`, not Array is equal `false` too:
+Массив не равен `true`, но не-массив также не равен `true`;
+Массив равен `false`, не-массив также равен `false`:
 
 ```js
 true == []; // -> false
@@ -178,13 +178,13 @@ false == []; // -> true
 false == ![]; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
 ```js
 true == []; // -> false
 true == ![]; // -> false
 
-// According to the specification
+// Согласно спецификации
 
 true == []; // -> false
 
@@ -204,7 +204,7 @@ true == false; // -> false
 false == []; // -> true
 false == ![]; // -> true
 
-// According to the specification
+// Согласно спецификации
 
 false == []; // -> true
 
@@ -222,28 +222,28 @@ false == false; // -> true
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## true is false
+## `true` является `false`
 
 ```js
 !!"false" == !!"true"; // -> true
 !!"false" === !!"true"; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-Consider this step-by-step:
+Вот как это работает:
 
 ```js
-// true is 'truthy' and represented by value 1 (number), 'true' in string form is NaN.
+// true является 'truthy' и приводится к числу 1 (number), 'true' в строчном виде является NaN.
 true == "true"; // -> false
 false == "false"; // -> false
 
-// 'false' is not the empty string, so it's a truthy value
+// 'false' не является пустой строкой, поэтому у него `truthy` значение
 !!"false"; // -> true
 !!"true"; // -> true
 ```
 
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.13** Оператор нестрогого равенства](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## baNaNa
 
@@ -251,46 +251,46 @@ false == "false"; // -> false
 "b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
-This is an old-school joke in JavaScript, but remastered. Here's the original one:
+Это старая шутка языка JavaScript, но немного переделанная. В оригинале она выглядела следующим образом:
 
 ```js
 "foo" + +"bar"; // -> 'fooNaN'
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
+Выражение вычисляется следующим образом `'foo' + (+'bar')`, что превращает `'bar'` в нечисловое значение (Not A Number).
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
-## `NaN` is not a `NaN`
+## `NaN` не равен `NaN`
 
 ```js
 NaN === NaN; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-The specification strictly defines the logic behind this behavior:
+Спецификация строго определяет логику данного поведения:
 
-> 1. If `Type(x)` is different from `Type(y)`, return **false**.
-> 2. If `Type(x)` is Number, then
->    1. If `x` is **NaN**, return **false**.
->    2. If `y` is **NaN**, return **false**.
+> 1. Если `Type(x)` отличается от `Type(y)`, вернуть **false**.
+> 2. Если `Type(x)` Число, тогда
+>    1. Если `x` это **NaN**, вернуть **false**.
+>    2. Если `y` это **NaN**, вернуть **false**.
 >    3. … … …
 >
-> &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+> &mdash; [**7.2.14** Оператор строгого равенства](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
-Following the definition of `NaN` from the IEEE:
+Согласно определению `NaN` из IEEE:
 
-> Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
+> Возможны четыре взаимоисключающих(?) оператора: больше, меньше, равно и не равно. Последний случай возникает, если, как минимум, один операнд - это NaN. Каждый NaN будет сравниваться со всем, включая себя.
 >
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
-## It's a fail
+## Это `fail`
 
-You would not believe, but …
+Вы не поверите, но…
 
 ```js
 (![] + [])[+[]] +
@@ -300,28 +300,28 @@ You would not believe, but …
 // -> 'fail'
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-By breaking that mass of symbols into pieces, we notice that the following pattern occurs often:
+Разбивая это выражение на куски, мы можем заметить, что часто используется следующая структура:
 
 ```js
 ![] + []; // -> 'false'
 ![]; // -> false
 ```
 
-So we try adding `[]` to `false`. But due to a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up converting the right operand to a string:
+Попытаемся сложить `[]` с `false`. Но из-за ряда вызовов внутренней функции (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) в итоге правый операнд приводится к строке:
 
 ```js
 ![] + [].toString(); // 'false'
 ```
 
-Thinking of a string as an array we can access its first character via `[0]`:
+Рассматривая строку как массив, мы можем получить доступ к первому символу строки через `[0]`:
 
 ```js
 "false"[0]; // -> 'f'
 ```
 
-The rest is obvious, but the `i` is tricky. The `i` in `fail` is grabbed by generating the string `'falseundefined'` and grabbing the element on index `['10']`
+Остальное вполне очевидно, но `i` довольно интересна. Буква `i` в итоговом результате `fail` получена путем генерации строки `'falseundefined'` и выбором её элемента по индексу `['10']`
 
 ## `[]` is truthy, but not `true`
 
