@@ -324,91 +324,91 @@ NaN === NaN; // -> false
 
 Остальное вполне очевидно, но `i` довольно интересна. Буква `i` в итоговом результате `fail` получена путем генерации строки `'falseundefined'` и выбором её элемента по индексу `['10']`
 
-## `[]` is truthy, but not `true`
+## `[]` является `truthy`, но не `true`
 
-An array is a truthy value, however, it's not equal to `true`.
+Массивы правдоподобны - `truthy`, но, тем не менее, они не равны `true`.
 
 ```js
 !![]       // -> true
 [] == true // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-Here are links to the corresponding sections in the ECMA-262 specification:
+Здесь представлены ссылки на соответствующие секции спецификации ECMA-262:
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `null` is falsy, but not `false`
+## `null` является `falsy`, но не `false`
 
-Despite the fact that `null` is a falsy value, it's not equal to `false`.
+Несмотря на то, что `null` является `falsy`, он не равен `false`.
 
 ```js
 !!null; // -> false
 null == false; // -> false
 ```
 
-At the same time, other falsy values, like `0` or `''` are equal to `false`.
+В это же время, другие `falsy` значения, к примеру `0` или `''`, равны `false`.
 
 ```js
 0 == false; // -> true
 "" == false; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-The explanation is the same as for previous example. Here's the corresponding link:
+Объяснение такое же как и в предыдущем примере. Вот соответствующая ссылка:
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `document.all` is an object, but it is undefined
+## `document.all` является объектом, но в то же время он `undefined`
 
-> ⚠️ This is part of the Browser API and won't work in a Node.js environment ⚠️
+> ⚠️ Эта часть про браузерное API, которое не будет работать в среде Node.js ⚠️
 
-Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
+Несмотря на то, что `document.all` является массиво-подобным объектом и предоставляет доступ к элементам DOM на странице, возвращаемое значение для оператора `typeof` будет `undefined`.
 
 ```js
 document.all instanceof Object; // -> true
 typeof document.all; // -> 'undefined'
 ```
 
-At the same time, `document.all` is not equal to `undefined`.
+В это же время, `document.all` строго не равен `undefined`.
 
 ```js
 document.all === undefined; // -> false
 document.all === null; // -> false
 ```
 
-But at the same time:
+Но при этом:
 
 ```js
 document.all == null; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-> `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
-> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
+> `document.all` используется для доступа к элементам DOM, в частности в старых версиях IE. Несмотря на отсутствие стандарта, этот подход широко использовался в старом JS коде. Когда стандарт расширили добавлением новых API (например, `document.getElementById`) данный API-вызов признали устаревшим и комитету по стандартам пришлось решать, что делать с этим. Из-за широкого распространения данного подхода они решили поддерживать API, тем самым преднамеренно нарушив спецификацию JavaScript. 
+> Причина по которой он возвращает `false` при использовании [Строгого сравнения](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) с `undefined`, но при этом возвращает `true` при использовании [Нестрогого сравнения](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) кроется в преднамеренном нарушении спецификации, которая позволяет сделать это.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
 > &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
 
-## Minimal value is greater than zero
+## Минимальное значение больше нуля
 
-`Number.MIN_VALUE` is the smallest number, which is greater than zero:
+`Number.MIN_VALUE` - это наименьшее число, которое больше нуля:
 
 ```js
 Number.MIN_VALUE > 0; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution that floats can give you.
+> `Number.MIN_VALUE` - это `5e-324`, то есть минимальное положительное числовое значение, представимое в JavaScript, демонстрирующее как близко Вы можете подобраться к нулю. It defines the best resolution that floats can give you.
 >
 > Now the overall smallest value is `Number.NEGATIVE_INFINITY` although it's not really numeric in a strict sense.
 >
-> &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
+> &mdash; [“Почему `0` меньше `Number.MIN_VALUE` в JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) на StackOverflow
 
 - [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
@@ -428,38 +428,38 @@ new Foo() instanceof null;
 // >     at … … …
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
+Это не часть спецификации. Это просто баг, который сейчас исправлен, поэтому данной проблемы не должно быть в будущем.
 
-## Adding arrays
+## Сложение массивов
 
-What if you try to add two arrays?
+Что если попробовать сложить два массива?
 
 ```js
 [1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-The concatenation happens. Step-by-step, it looks like this:
+Происходит конкатенация. Шаг за шагом, её можно представить в следующем виде:
 
 ```js
 [1, 2, 3] +
   [4, 5, 6][
-    // call toString()
+    // вызываем метод toString()
     (1, 2, 3)
   ].toString() +
   [4, 5, 6].toString();
-// concatenation
+// конкатенация
 "1,2,3" + "4,5,6";
 // ->
 ("1,2,34,5,6");
 ```
 
-## Trailing commas in array
+## Замыкающие запятые
 
-You've created an array with 4 empty elements. Despite all, you'll get an array with three elements, because of trailing commas:
+Допустим, Вы создали массив 4-х пустых элементов. Однако из-за "висящих запятых" у вас получится массив с 3-мя элементами.
 
 ```js
 let a = [, , ,];
@@ -467,15 +467,15 @@ a.length; // -> 3
 a.toString(); // -> ',,'
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-> **Trailing commas** (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can simply add a new line without modifying the previously last line if that line already uses a trailing comma. This makes version-control diffs cleaner and editing code might be less troublesome.
+> **Висящие запятые** (или "последние запятые") могут быть полезны при добавлении новых элементов, параметров или свойств в код JavaScript. Если вы хотите добавить новое свойство, вы просто добавляете новую строчку без изменения предыдущей, если в ней уже использована висящая запятая. Это делает различия в контроле версий чище и изменение кода может быть менее хлопотным.
 >
-> &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
+> &mdash; [Висящие запятые](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
 
-## Array equality is a monster
+## Равенство массивов - это монстр
 
-Array equality is a monster in JS, as you can see below:
+Равенство массивов - это монстр в JS, как Вы можете наблюдать ниже:
 
 ```js
 [] == ''   // -> true
@@ -503,22 +503,22 @@ Array equality is a monster in JS, as you can see below:
 [[[[[[ undefined ]]]]]] == '' // true
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
+Вы должны внимательно следить за примерами, перечисленными выше! Данное поведение описано в секции [**7.2.13** Нестрогое сравнение](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) спецификации.
 
-## `undefined` and `Number`
+## `undefined` и `Number`
 
-If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+Если мы не передаем никаких аргументов в конструктор `Number`, мы получаем `0`. Значение `undefined` формально присваивается аргументам, когда реальные аргументы отсутствуют, поэтому Вы могли ожидать, что `Number` без переданных аргументов возьмет `undefined` в качестве параметра. Однако, когда мы передаем параметром `undefined`, мы получаем `NaN`.
 
 ```js
 Number(); // -> 0
 Number(undefined); // -> NaN
 ```
 
-### 💡 Explanation:
+### 💡 Объяснение:
 
-According to the specification:
+Согласно спецификации:
 
 1. If no arguments were passed to this function's invocation, let `n` be `+0`.
 2. Else, let `n` be ? `ToNumber(value)`.
