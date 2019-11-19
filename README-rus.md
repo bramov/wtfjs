@@ -30,6 +30,7 @@ $ npm install -g wtfjs
 На текущий момент существуют следующие переводы **wtfjs**:
 
 - [中文版](./README-zh-cn.md)
+- [English](./README.md)
 
 [**Запросить перевод на другой язык**][tr-request]
 
@@ -43,12 +44,12 @@ $ npm install -g wtfjs
 - [💪🏻 Мотивация](#-motivation)
 - [✍🏻 Нотация](#-notation)
 - [👀 Примеры](#-examples)
-  - [`[]` is equal `![]`](#-is-equal-)
-  - [`true` is not equal `![]`, but not equal `[]` too](#true-is-not-equal--but-not-equal--too)
-  - [true is false](#true-is-false)
+  - [`[]` равен `![]`](#-is-equal-)
+  - [`true` не равен `![]`, но и `[]` он тоже не равен](#true-is-not-equal--but-not-equal--too)
+  - [true равен false](#true-is-false)
   - [baNaNa](#banana)
-  - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
-  - [It's a fail](#its-a-fail)
+  - [`NaN` не равен `NaN`](#nan-is-not-a-nan)
+  - [Это `fail`](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
   - [`document.all` is an object, but it is undefined](#documentall-is-an-object-but-it-is-undefined)
@@ -102,7 +103,7 @@ $ npm install -g wtfjs
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# 💪🏻 Motivation
+# 💪🏻 Мотивация
 
 > Ради удовольствия
 >
